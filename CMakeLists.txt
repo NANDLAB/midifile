@@ -64,6 +64,7 @@ set(HDRS
 )
 
 add_library(midifile STATIC ${SRCS} ${HDRS})
+target_include_directories(midifile PUBLIC include)
 
 ##############################
 ##
