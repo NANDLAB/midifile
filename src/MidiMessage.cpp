@@ -275,6 +275,25 @@ double MidiMessage::getTempoSPT(int tpq) const {
 }
 
 
+//////////////////////////////
+//
+// MidiMessage::isSystem -- Returns true if the message is a system message
+//      (command nibble is 0xf)
+//      (only system messages do not specify any channel)
+//
+
+bool MidiMessage::isSystem(void) const {
+    if (size() == 0) {
+        return false;
+    }
+    else if ((*this)[0] >= 0xf0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 
 //////////////////////////////
 //
@@ -529,7 +548,33 @@ bool MidiMessage::isPatchChange(void) const {
 	return isTimbre();
 }
 
+//////////////////////////////
+//
+// MidiMessage::isTimbre -- Returns timbre (patch) number of a timbre message
+//   -1 if this is not a timbre message.
+//
 
+int MidiMessage::getTimbre() const {
+    if (isTimbre()) {
+        return (*this)[1];
+    }
+    else {
+        return -1;
+    }
+}
+
+int MidiMessage::getPatch() const {
+    return getTimbre();
+}
+
+int MidiMessage::getPitchbend() const {
+    if (isPitchbend()) {
+        return (*this)[1] | ((*this)[2] << 7);
+    }
+    else {
+        return -1;
+    }
+}
 
 //////////////////////////////
 //
