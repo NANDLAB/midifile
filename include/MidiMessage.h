@@ -91,8 +91,8 @@ class MidiMessage : public std::vector<uchar> {
 		void           setMessage           (const std::vector<int>& message);
 
 		// message-type convenience functions:
-        bool           isSystem             (void) const;
-        bool           isMetaMessage        (void) const;
+		bool           isSystem             (void) const;
+		bool           isMetaMessage        (void) const;
 		bool             isMeta             (void) const;
 		bool           isNote               (void) const;
 		bool             isNoteOff          (void) const;
@@ -148,11 +148,11 @@ class MidiMessage : public std::vector<uchar> {
 		double         getTempoBPM          (void) const;
 		double         getTempoTPS          (int tpq) const;
 		double         getTempoSPT          (int tpq) const;
-        int            getTimbre            () const;
-        int              getPatch           () const;
-        int            getPitchbend         () const;
+		int            getTimbre            () const;
+		int              getPatch           () const;
+		int            getPitchbend         () const;
 
-        int            getMetaType          (void) const;
+		int            getMetaType          (void) const;
 		bool           isText               (void) const;
 		bool           isCopyright          (void) const;
 		bool           isTrackName          (void) const;

@@ -283,15 +283,15 @@ double MidiMessage::getTempoSPT(int tpq) const {
 //
 
 bool MidiMessage::isSystem(void) const {
-    if (size() == 0) {
-        return false;
-    }
-    else if ((*this)[0] >= 0xf0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+	if (size() == 0) {
+		return false;
+	}
+	else if ((*this)[0] >= 0xf0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 
@@ -555,25 +555,25 @@ bool MidiMessage::isPatchChange(void) const {
 //
 
 int MidiMessage::getTimbre() const {
-    if (isTimbre()) {
-        return (*this)[1];
-    }
-    else {
-        return -1;
-    }
+	if (isTimbre()) {
+		return (*this)[1];
+	}
+	else {
+		return -1;
+	}
 }
 
 int MidiMessage::getPatch() const {
-    return getTimbre();
+	return getTimbre();
 }
 
 int MidiMessage::getPitchbend() const {
-    if (isPitchbend()) {
-        return (*this)[1] | ((*this)[2] << 7);
-    }
-    else {
-        return -1;
-    }
+	if (isPitchbend()) {
+		return (*this)[1] | ((*this)[2] << 7);
+	}
+	else {
+		return -1;
+	}
 }
 
 //////////////////////////////
