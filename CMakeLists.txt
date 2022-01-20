@@ -66,6 +66,14 @@ set(HDRS
 add_library(midifile STATIC ${SRCS} ${HDRS})
 target_include_directories(midifile PUBLIC include)
 
+add_custom_target(tools)
+add_dependencies(tools
+    80off asciimidi binasc createmidifile createmidifile2 drumtab durations
+    mid2mat mid2mtb mid2svg midi2binasc midi2melody midi2notes midi2skini
+    midi2text midicater midimixup miditime perfid retick shutak smfdur stretch
+    sysextest text2midi textmidi toascii tobin tobinary todec tohex type0 vlv
+)
+
 ##############################
 ##
 ## Programs:
@@ -140,6 +148,8 @@ target_link_libraries(type0 midifile)
 target_link_libraries(vlv midifile)
 
 if(HAVE_UNISTD_H AND HAVE_SYS_IO_H)
+    add_dependencies(tools midi2beep)
+
     add_executable(midi2beep EXCLUDE_FROM_ALL tools/midi2beep.cpp)
 
     target_link_libraries(midi2beep midifile)
@@ -148,6 +158,10 @@ endif()
 # The following programs require headers from humextra repository.
 # <https://github.com/humdrum-tools/humextra>
 if(HAVE_HUMDRUM_H)
+    add_dependencies(tools
+        henonfile mid2hum midiescerpt peep2midi
+    )
+
     add_executable(henonfile EXCLUDE_FROM_ALL tools/henonfile.cpp)
     add_executable(mid2hum EXCLUDE_FROM_ALL tools/mid2hum.cpp)
     add_executable(midiexcerpt EXCLUDE_FROM_ALL tools/midiexcerpt.cpp)
